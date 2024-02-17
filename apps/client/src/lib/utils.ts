@@ -1,3 +1,5 @@
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 import { api } from "./trpc";
 
 export function useHook() {
@@ -11,4 +13,8 @@ export function useHook() {
     isValidating,
     mutate,
   };
+}
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }

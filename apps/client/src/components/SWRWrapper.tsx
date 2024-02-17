@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useState } from "react";
 
-import { useHook } from "../../lib/utils";
-import { api } from "../../lib/trpc";
+import { useHook } from "../lib/utils";
+import { api } from "../lib/trpc";
 
 function App() {
   const { data: result, error, isLoading } = useHook();
@@ -13,7 +13,9 @@ function App() {
   if (error || !result) return <h1 className="text-red-500">Failed to load</h1>;
 
   return (
-    <h1 className="text-black">Hello World! Nitro data {result.data.str}</h1>
+    <h1 className="text-black font-fs-inter">
+      Hello World! Nitro data {result.data.str}
+    </h1>
   );
 }
 
