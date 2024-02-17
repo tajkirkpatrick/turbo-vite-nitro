@@ -6,14 +6,15 @@ import { api } from "../lib/trpc";
 
 function App() {
   const { data: result, error, isLoading } = useHook();
-  // console.log(data, error, isLoading);
+  // console.log(result, error, isLoading);
 
   if (isLoading) return <h1>Loading...</h1>;
 
-  if (error || !result) return <h1 className="text-red-500">Failed to load</h1>;
+  if (error || !result)
+    return <h1 className="text-lg text-red-500">Failed to load</h1>;
 
   return (
-    <h1 className="text-black font-fs-inter">
+    <h1 className="font-fs-inter text-black">
       Hello World! Nitro data {result.data.str}
     </h1>
   );
