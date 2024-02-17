@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "turbo": "^1.12.4"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build"
+  }
+}
