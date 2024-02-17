@@ -47,6 +47,12 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.0.2
         version: 1.0.2(@types/react@18.2.55)(react@18.2.0)
+      '@tanstack/react-form':
+        specifier: ^0.13.6
+        version: 0.13.6(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0)
+      '@tanstack/valibot-form-adapter':
+        specifier: ^0.13.6
+        version: 0.13.6(valibot@0.28.1)
       '@trpc-swr/client':
         specifier: 3.0.0-canary.1
         version: 3.0.0-canary.1(patch_hash=ldg7fsyrpr3hwnqqytzxidgyfi)(@trpc/client@10.45.1)(@trpc/server@10.45.1)(react@18.2.0)(swr@2.2.5)
@@ -98,6 +104,9 @@ importers:
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
+      valibot:
+        specifier: ^0.28.1
+        version: 0.28.1
     devDependencies:
       prettier:
         specifier: ^3.2.5
@@ -1254,6 +1263,52 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
+  /@tanstack/form-core@0.13.6:
+    resolution: {integrity: sha512-ZcAoAd3xLZUYy6FXawJ1h08KhLzCnfzQqmwh6eGruKlzS1LpPGhPqJ0HdjFN8NmqaafJxONZb0nPI56uqu8SDw==}
+    dependencies:
+      '@tanstack/store': 0.3.1
+    dev: false
+
+  /@tanstack/react-form@0.13.6(@types/react@18.2.55)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-1rzkLnbGle1jOqqEjPu8StYQwsmlkIZJmcBWj4OVI+gUTiZMTgcIyWkn4RrSdMEcK3gEsQRZPEf7Kt6N+DcReQ==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+    dependencies:
+      '@tanstack/form-core': 0.13.6
+      '@tanstack/react-store': 0.3.1(react-dom@18.2.0)(react@18.2.0)
+      decode-formdata: 0.4.0
+      react: 18.2.0
+      rehackt: 0.0.3(@types/react@18.2.55)(react@18.2.0)
+    transitivePeerDependencies:
+      - '@types/react'
+      - react-dom
+    dev: false
+
+  /@tanstack/react-store@0.3.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-PfV271d345It6FdcX4c9gd+llKGddtvau8iJnybTAWmYVyDeFWfIIkiAJ5iNITJmI02AzqgtcV3QLNBBlpBUjA==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    dependencies:
+      '@tanstack/store': 0.3.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /@tanstack/store@0.3.1:
+    resolution: {integrity: sha512-A49KN8SpLMWaNmZGPa9K982RQ81W+m7W6iStcQVeKeVS70JZRqkF0fDwKByREPq6qz9/kS0aQFOPQ0W6wIeU5g==}
+    dev: false
+
+  /@tanstack/valibot-form-adapter@0.13.6(valibot@0.28.1):
+    resolution: {integrity: sha512-3zGBORVci8ZQrTP3Tkl2AqPNKQHJFXqu28r8B2LYWpEL/YAqu7hY0GXuKynn5vP7sn1mjqJzMmq6xmbnQj/OvA==}
+    peerDependencies:
+      valibot: ^0.x
+    dependencies:
+      '@tanstack/form-core': 0.13.6
+      valibot: 0.28.1
+    dev: false
+
   /@trpc-swr/client@3.0.0-canary.1(patch_hash=ldg7fsyrpr3hwnqqytzxidgyfi)(@trpc/client@10.45.1)(@trpc/server@10.45.1)(react@18.2.0)(swr@2.2.5):
     resolution: {integrity: sha512-yQfprG0TeBOfageFfpBt37LYywPAJMpi02lPf0OvNFtNZSTr5FtJzShO1dQb3jMfvbgZZoLX8ZAJ30T0sPhr1Q==}
     peerDependencies:
@@ -2222,6 +2277,10 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+
+  /decode-formdata@0.4.0:
+    resolution: {integrity: sha512-/OMUlsRLrSgHPOWCwembsFFTT4DY7Ts9GGlwK8v9yeLOyYZSPKIfn/1oOuV9UmpQ9CZi5JeyT8edunRoBOOl5g==}
+    dev: false
 
   /decode-named-character-reference@1.0.2:
     resolution: {integrity: sha512-O8x12RzrUF8xyVcY0KJowWsmaJxQbmy0/EtnNtHRpsOcT7dFk5W598coHqBVpmWo1oQQfsCqfCmkZN5DJrZVdg==}
@@ -4643,6 +4702,21 @@ packages:
     resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
     dev: false
 
+  /rehackt@0.0.3(@types/react@18.2.55)(react@18.2.0):
+    resolution: {integrity: sha512-aBRHudKhOWwsTvCbSoinzq+Lej/7R8e8UoPvLZo5HirZIIBLGAgdG7SL9QpdcBoQ7+3QYPi3lRLknAzXBlhZ7g==}
+    peerDependencies:
+      '@types/react': '*'
+      react: '*'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      '@types/react': 18.2.55
+      react: 18.2.0
+    dev: false
+
   /rehype-parse@9.0.0:
     resolution: {integrity: sha512-WG7nfvmWWkCR++KEkZevZb/uw41E8TsH4DsY9UxsTbIXCVGbAs4S+r8FrQ+OtH5EEQAs+5UxKC42VinkmpA1Yw==}
     dependencies:
@@ -5774,6 +5848,10 @@ packages:
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+
+  /valibot@0.28.1:
+    resolution: {integrity: sha512-zQnjwNJuXk6362Leu0+4eFa/SMwRom3/hEvH6s1EGf3oXIPbo2WFKDra9ymnbVh3clLRvd8hw4sKF5ruI2Lyvw==}
+    dev: false
 
   /vfile-location@5.0.2:
     resolution: {integrity: sha512-NXPYyxyBSH7zB5U6+3uDdd6Nybz6o6/od9rk8bp9H8GR3L+cm/fC0uUTbqBmUTnMCUDslAGBOIKNfvvb+gGlDg==}

@@ -15,6 +15,8 @@
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource-variable/inter": "^5.0.16",
     "@radix-ui/react-slot": "^1.0.2",
+    "@tanstack/react-form": "^0.13.6",
+    "@tanstack/valibot-form-adapter": "^0.13.6",
     "@trpc-swr/client": "3.0.0-canary.1",
     "@trpc/client": "^10.45.1",
     "@trpc/server": "^10.45.1",
@@ -31,7 +33,8 @@
     "tailwind-merge": "^2.2.1",
     "tailwindcss": "^3.4.1",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "valibot": "^0.28.1"
   },
   "peerDependencies": {
     "@myrepo": "workspace:../api"
