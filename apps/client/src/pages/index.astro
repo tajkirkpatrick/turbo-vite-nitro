@@ -1,12 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
-
-// const data = await fetch("/api").then((res) => res.json());
-// console.log(data);
 ---
 
 <Layout title="Welcome to Astro.">
+  <script>
+    const data = await fetch("/api").then((res) => res.json());
+    console.log(data);
+    console.log("hi");
+  </script>
   <main>
     <svg
       class="astro-a"
