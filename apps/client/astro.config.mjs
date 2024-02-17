@@ -8,6 +8,7 @@ export default defineConfig({
   output: "static",
   vite: {
     server: {
+      // in third party packages like trpc-swr, it doesn't work with the proxy option
       proxy: {
         "/api": "http://localhost:3000/",
       },
