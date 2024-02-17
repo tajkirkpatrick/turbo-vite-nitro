@@ -1,1 +1,3 @@
-export default defineEventHandler(() => "<h1>nitro is amazing!</h1>");
+export default defineEventHandler((evt) => {
+  return { status: "ok" };
+});

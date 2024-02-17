@@ -1,1 +1,1 @@
-# Turbo Monorepo containing Nitro Server and Vite
+# Turbrepo + Vite + Nitro Server
