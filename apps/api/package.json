@@ -8,5 +8,8 @@
   },
   "devDependencies": {
     "nitropack": "latest"
+  },
+  "dependencies": {
+    "@trpc/server": "^10.45.1"
   }
 }
