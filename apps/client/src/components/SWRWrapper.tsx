@@ -11,7 +11,9 @@ function App() {
   if (isLoading) return <h1>Loading...</h1>;
 
   if (error || !result)
-    return <h1 className="text-lg text-red-500">Failed to load</h1>;
+    return (
+      <h1 className="text-xl tracking-wider text-red-500">Failed to load</h1>
+    );
 
   return (
     <h1 className="font-fs-inter text-black">
