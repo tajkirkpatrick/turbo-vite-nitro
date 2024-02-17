@@ -1,15 +1,14 @@
-// import { api } from "./trpc";
-import useSWR from "swr";
-
-export const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { api } from "./trpc";
 
 export function useHook() {
-  const { data, error, isLoading } = useSWR<{ nitro: string }>("/api", fetcher);
-  // const { data, error, isLoading } = api.greeting.useSWR();
+  const { data, error, isLoading, isValidating, mutate } =
+    api.greeting.useSWR();
 
   return {
     data,
+    error,
     isLoading,
-    isError: error,
+    isValidating,
+    mutate,
   };
 }

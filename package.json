@@ -5,5 +5,10 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@trpc-swr/client@3.0.0-canary.1": "patches/@trpc-swr__client@3.0.0-canary.1.patch"
+    }
   }
 }

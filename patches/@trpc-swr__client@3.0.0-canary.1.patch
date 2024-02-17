@@ -1,0 +1,23 @@
+diff --git a/dist/index.esm.js b/dist/index.esm.mjs
+similarity index 100%
+rename from dist/index.esm.js
+rename to dist/index.esm.mjs
+diff --git a/package.json b/package.json
+index a7d633c1570d60faab40fcbfb9e143e1f6387c93..6168bccb82eea5f4b65f7e9e36c1cc80d3fa75e6 100644
+--- a/package.json
++++ b/package.json
+@@ -14,12 +14,12 @@
+   "exports": {
+     ".": {
+       "types": "./dist/index.d.ts",
+-      "import": "./dist/index.esm.js",
++      "import": "./dist/index.esm.mjs",
+       "require": "./dist/index.js"
+     },
+     "./shared": {
+       "types": "./dist/shared.d.ts",
+-      "import": "./dist/shared/index.esm.js",
++      "import": "./dist/shared/index.esm.mjs",
+       "require": "./dist/shared/index.js"
+     }
+   },

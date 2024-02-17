@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@trpc-swr/client@3.0.0-canary.1':
+    hash: ldg7fsyrpr3hwnqqytzxidgyfi
+    path: patches/@trpc-swr__client@3.0.0-canary.1.patch
+
 importers:
 
   .:
@@ -37,11 +42,14 @@ importers:
         specifier: workspace:../api
         version: link:../api
       '@trpc-swr/client':
-        specifier: ^2.0.1
-        version: 2.0.1(@trpc/client@10.45.1)(@trpc/server@10.45.1)(react@18.2.0)(swr@2.2.5)
+        specifier: 3.0.0-canary.1
+        version: 3.0.0-canary.1(patch_hash=ldg7fsyrpr3hwnqqytzxidgyfi)(@trpc/client@10.45.1)(@trpc/server@10.45.1)(react@18.2.0)(swr@2.2.5)
       '@trpc/client':
         specifier: ^10.45.1
         version: 10.45.1(@trpc/server@10.45.1)
+      '@trpc/server':
+        specifier: ^10.45.1
+        version: 10.45.1
       '@types/react':
         specifier: ^18.2.55
         version: 18.2.55
@@ -1170,8 +1178,8 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /@trpc-swr/client@2.0.1(@trpc/client@10.45.1)(@trpc/server@10.45.1)(react@18.2.0)(swr@2.2.5):
-    resolution: {integrity: sha512-KLAk3p5OKP7I2WSrF94FZrUdxUqNa/v82zeD3bCoTFS2dYXKYpzt7W5ngYyxAM9S1L0toI2RETr6sjFh+2YqGQ==}
+  /@trpc-swr/client@3.0.0-canary.1(patch_hash=ldg7fsyrpr3hwnqqytzxidgyfi)(@trpc/client@10.45.1)(@trpc/server@10.45.1)(react@18.2.0)(swr@2.2.5):
+    resolution: {integrity: sha512-yQfprG0TeBOfageFfpBt37LYywPAJMpi02lPf0OvNFtNZSTr5FtJzShO1dQb3jMfvbgZZoLX8ZAJ30T0sPhr1Q==}
     peerDependencies:
       '@trpc/client': ^10.32.0
       '@trpc/server': ^10.32.0
@@ -1183,6 +1191,7 @@ packages:
       react: 18.2.0
       swr: 2.2.5(react@18.2.0)
     dev: false
+    patched: true
 
   /@trpc/client@10.45.1(@trpc/server@10.45.1):
     resolution: {integrity: sha512-nVbAk1xpIiI64WgzXGgfxPOGgHoYvffn1IsjV1D/Ri7DL4BKuo2qtZ7UQ+OuHkzH2M8j4ikSVBDpk545fOdvpw==}

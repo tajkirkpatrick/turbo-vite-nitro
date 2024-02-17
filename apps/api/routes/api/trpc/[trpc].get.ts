@@ -1,10 +1,10 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import { createContext } from "../lib/trpc/context";
-import { appRouter } from "../lib/trpc/router";
+import { createContext } from "../../../lib/trpc/context";
+import { appRouter } from "../../../lib/trpc/router";
 
 export default eventHandler((evt) => {
   return fetchRequestHandler({
-    endpoint: "/trpc",
+    endpoint: "/api/trpc",
     req: toWebRequest(evt),
     router: appRouter,
     createContext,
