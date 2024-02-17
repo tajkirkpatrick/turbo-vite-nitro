@@ -1,3 +1,1 @@
-export default eventHandler(() => {
-  return { status: "ok" };
-});
+export default eventHandler((evt) => sendNoContent(evt));
