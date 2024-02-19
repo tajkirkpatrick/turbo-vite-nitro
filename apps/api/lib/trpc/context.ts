@@ -1,5 +1,5 @@
+import { db } from "@myrepo/db/src/db";
 import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
-
 /**
  * Creates context for an incoming request
  * @link https://trpc.io/docs/v11/context
@@ -7,6 +7,7 @@ import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 export async function createContext(opts: FetchCreateContextFnOptions) {
   return {
     opts,
+    db,
   };
 }
 

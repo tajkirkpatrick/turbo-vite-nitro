@@ -7,10 +7,13 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   output: "static",
   vite: {
+    optimizeDeps: { exclude: ["oslo"] },
     server: {
       // in third party packages like trpc-swr, it doesn't work with the proxy option
       proxy: {
-        "/api": "http://localhost:3000/",
+        "^/api/.*": {
+          target: "http://localhost:3000",
+        },
       },
     },
   },
