@@ -3,7 +3,7 @@ node_modules
 .output
 .turbo/
 .vscode/
-.sqlite
+*.sqlite
 
 # build output
 dist/
@@ -26,3 +26,4 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
