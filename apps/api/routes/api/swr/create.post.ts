@@ -1,9 +1,8 @@
 import { parseAsync, objectAsync, string } from "valibot";
-import { generateId } from "lucia";
 import { Argon2id } from "oslo/password";
-import { lucia } from "@myrepo/auth/src/lucia";
 import { db } from "@myrepo/db/src/db";
 import * as schema from "@myrepo/db/src/schema";
+import { generateId } from "@myrepo/auth/src/lucia";
 
 const RegisterSchema = objectAsync({
   username: string([]),
@@ -22,9 +21,9 @@ export default eventHandler(async (event) => {
     // TODO: check if email is already used
     await db.insert(schema.userTable).values({
       id: userId,
+      email: parsed.email,
       username: parsed.username,
       password: hashedPassword,
-      email: parsed.email,
     });
 
     return send(event);

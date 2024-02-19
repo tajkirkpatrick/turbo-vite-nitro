@@ -2,7 +2,7 @@
   "name": "auth",
   "version": "1.0.0",
   "scripts": {
-    "build": "pnpm tsc --outDir dist src/lucia.ts"
+
   },
 
   "dependencies": {

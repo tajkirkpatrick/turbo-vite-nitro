@@ -1,4 +1,11 @@
 import { Lucia } from "lucia";
+export {
+  type User,
+  type Session,
+  verifyRequestOrigin,
+  generateId,
+} from "lucia";
+
 import { DrizzleSQLiteAdapter } from "@lucia-auth/adapter-drizzle";
 import { db } from "@myrepo/db/src/db";
 import * as schema from "@myrepo/db/src/schema";

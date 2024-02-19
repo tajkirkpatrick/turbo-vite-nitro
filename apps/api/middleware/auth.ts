@@ -1,5 +1,9 @@
-import { verifyRequestOrigin, type User, type Session } from "lucia";
-import { lucia } from "@myrepo/auth/src/lucia";
+import {
+  lucia,
+  type User,
+  type Session,
+  verifyRequestOrigin,
+} from "@myrepo/auth/src/lucia";
 
 export default eventHandler(async (event) => {
   if (event.method !== "GET") {

@@ -4,8 +4,7 @@
   "scripts": {
     "generate": "drizzle-kit generate:sqlite",
     "push": "drizzle-kit push:sqlite",
-    "dev": "pnpm generate & pnpm push & drizzle-kit studio",
-    "build": "pnpm tsc --outDir dist -p ./src"
+    "dev": "pnpm generate & pnpm push & drizzle-kit studio"
   },
   "dependencies": {
     "@types/better-sqlite3": "^7.6.9",
