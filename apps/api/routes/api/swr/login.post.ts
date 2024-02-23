@@ -32,7 +32,7 @@ export default eventHandler(async (event) => {
       ...sessionCookie.attributes,
     });
 
-    return send(event);
+    return sendRedirect(event, "/protected", 301);
   } catch (e) {
     console.error(e);
     return sendError(event, e);

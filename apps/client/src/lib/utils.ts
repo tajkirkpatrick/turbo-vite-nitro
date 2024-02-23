@@ -16,7 +16,7 @@ export const apiFetch = ofetch.create({
 const fetcher = (url: string) => apiFetch(url);
 
 const poster = (url: string, { arg }: { arg: Record<string, any> }) =>
-  apiFetch(url, {
+  apiFetch.raw<{ ok: boolean; url: string }>(url, {
     method: "POST",
     body: arg,
     onRequest(context) {
@@ -54,7 +54,7 @@ export function useRegister() {
   };
 }
 
-export function useLogin() {
+export function useLoginAction() {
   const { data, error, trigger, reset, isMutating } = useSWRMutation(
     "/swr/login",
     poster,

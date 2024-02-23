@@ -3,7 +3,7 @@ node_modules
 .output
 .turbo/
 .vscode/
-*.sqlite
+*.sqlite*
 
 # build output
 dist/

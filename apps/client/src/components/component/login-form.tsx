@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { LoginSchema } from "@/lib/schemas";
-import { useLogin } from "@/lib/utils";
+import { useLoginAction as useLoginAction } from "@/lib/utils";
 
 function FieldInfo({ field }: { field: FieldApi<any, any, any, any> }) {
   return (
@@ -25,7 +25,7 @@ function FieldInfo({ field }: { field: FieldApi<any, any, any, any> }) {
 }
 
 export function LoginForm() {
-  const { trigger } = useLogin();
+  const { trigger } = useLoginAction();
 
   const form = useForm({
     defaultValues: {
@@ -33,10 +33,13 @@ export function LoginForm() {
       password: "",
     },
     onSubmit: async ({ value, formApi }) => {
-      trigger({ ...value }).catch((e) => console.error(e));
+      const res = await trigger({ ...value }).catch((e) => console.error(e));
       formApi.setFieldValue("password", "");
-
-      // window.location.href = "/login?error=invalid-credentials";
+      if (!res || !res.ok) {
+        return (window.location.href = "/login?error=login-failed");
+      } else {
+        return (window.location.href = new URL(res.url).href);
+      }
     },
     validatorAdapter: valibotValidator,
     validators: {
