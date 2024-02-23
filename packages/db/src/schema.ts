@@ -6,7 +6,7 @@ export const userTable = sqliteTable("user", {
   username: text("username"),
   email: text("email").unique().notNull(),
   password: text("password").notNull(),
-  createdAt: integer("created_at", { mode: "timestamp" })
+  createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
   updatedAt: integer("updated_at", { mode: "timestamp" }),
@@ -24,7 +24,7 @@ export const sessionTable = sqliteTable("session", {
     .notNull()
     .references(() => userTable.id, { onDelete: "cascade" }),
   expiresAt: integer("expires_at").notNull(),
-  createdAt: integer("created_at", { mode: "timestamp" })
+  createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),
 });

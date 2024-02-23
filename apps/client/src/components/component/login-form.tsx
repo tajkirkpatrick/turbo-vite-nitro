@@ -35,6 +35,8 @@ export function LoginForm() {
     onSubmit: async ({ value, formApi }) => {
       trigger({ ...value }).catch((e) => console.error(e));
       formApi.setFieldValue("password", "");
+
+      // window.location.href = "/login?error=invalid-credentials";
     },
     validatorAdapter: valibotValidator,
     validators: {
@@ -43,111 +45,98 @@ export function LoginForm() {
   });
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="min-w-[450px] max-w-lg rounded-lg bg-white p-8 shadow-md">
-        <h1 className="mb-6 text-center text-4xl font-bold">Login</h1>
-        <form.Provider>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              void form.handleSubmit();
-            }}
-          >
-            <div className="mb-4">
-              <form.Field
-                name="email"
-                validatorAdapter={valibotValidator}
-                validators={{ onChange: string([email(), minLength(1)]) }}
-                children={(field) => (
-                  <>
-                    <label
-                      className="block text-sm font-medium text-gray-700"
-                      htmlFor={field.name}
-                    >
-                      Email
-                    </label>
-                    <Input
-                      name={field.name}
-                      value={field.state.value}
-                      onBlur={field.handleBlur}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                      id={field.name}
-                      placeholder={
-                        field.name.charAt(0).toUpperCase() + field.name.slice(1)
-                      }
-                      type="email"
-                    />
-                    <FieldInfo field={field} />
-                  </>
-                )}
-              />
-            </div>
-            <div className="mb-6">
-              <form.Field
-                name="password"
-                validatorAdapter={valibotValidator}
-                validators={{ onChange: string([minLength(8)]) }}
-                children={(field) => (
-                  <>
-                    <label
-                      className="block text-sm font-medium text-gray-700"
-                      htmlFor={field.name}
-                    >
-                      Password
-                    </label>
-                    <Input
-                      name={field.name}
-                      value={field.state.value}
-                      onBlur={field.handleBlur}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                      id={field.name}
-                      placeholder={
-                        field.name.charAt(0).toUpperCase() + field.name.slice(1)
-                      }
-                      type="password"
-                    />
-                    <FieldInfo field={field} />
-                  </>
-                )}
-              />
-            </div>
-            <div className="mb-4">
-              <form.Subscribe
-                selector={({ isSubmitting, canSubmit }) => [
-                  isSubmitting,
-                  canSubmit,
-                ]}
-                children={([isSubmitting, canSubmit]) => (
-                  <Button
-                    onClick={(e) => {
-                      if (isSubmitting || !canSubmit) {
-                        e.stopPropagation();
-                        e.preventDefault();
-                      }
-                    }}
-                    type="submit"
-                    aria-disabled={isSubmitting || !canSubmit}
-                    className="w-full bg-blue-600 text-white hover:bg-blue-700 aria-disabled:cursor-not-allowed aria-disabled:bg-gray-300"
-                  >
-                    {isSubmitting ? "Submitting..." : "Submit"}
-                  </Button>
-                )}
-              />
-            </div>
-          </form>
-        </form.Provider>
-        <div className="text-center">
-          <p className="text-sm">
-            Don't have an account?{" "}
-            <a className="text-blue-600 hover:underline" href="/register">
-              Sign Up
-            </a>
-          </p>
+    <form.Provider>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          void form.handleSubmit();
+        }}
+      >
+        <div className="mb-4">
+          <form.Field
+            name="email"
+            validatorAdapter={valibotValidator}
+            validators={{ onChange: string([email(), minLength(1)]) }}
+            children={(field) => (
+              <>
+                <label
+                  className="block text-sm font-medium text-gray-700"
+                  htmlFor={field.name}
+                >
+                  Email
+                </label>
+                <Input
+                  name={field.name}
+                  value={field.state.value}
+                  onBlur={field.handleBlur}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  id={field.name}
+                  placeholder={
+                    field.name.charAt(0).toUpperCase() + field.name.slice(1)
+                  }
+                  type="email"
+                />
+                <FieldInfo field={field} />
+              </>
+            )}
+          />
         </div>
-      </div>
-    </div>
+        <div className="mb-6">
+          <form.Field
+            name="password"
+            validatorAdapter={valibotValidator}
+            validators={{ onChange: string([minLength(1)]) }}
+            children={(field) => (
+              <>
+                <label
+                  className="block text-sm font-medium text-gray-700"
+                  htmlFor={field.name}
+                >
+                  Password
+                </label>
+                <Input
+                  name={field.name}
+                  value={field.state.value}
+                  onBlur={field.handleBlur}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  id={field.name}
+                  placeholder={
+                    field.name.charAt(0).toUpperCase() + field.name.slice(1)
+                  }
+                  type="password"
+                />
+                <FieldInfo field={field} />
+              </>
+            )}
+          />
+        </div>
+        <div className="mb-4">
+          <form.Subscribe
+            selector={({ isSubmitting, canSubmit }) => [
+              isSubmitting,
+              canSubmit,
+            ]}
+            children={([isSubmitting, canSubmit]) => (
+              <Button
+                onClick={(e) => {
+                  if (isSubmitting || !canSubmit) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                  }
+                }}
+                type="submit"
+                aria-disabled={isSubmitting || !canSubmit}
+                className="w-full bg-blue-600 text-white hover:bg-blue-700 aria-disabled:cursor-not-allowed aria-disabled:bg-gray-300"
+              >
+                {isSubmitting ? "Submitting..." : "Submit"}
+              </Button>
+            )}
+          />
+        </div>
+      </form>
+    </form.Provider>
   );
 }

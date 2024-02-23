@@ -1,7 +1,7 @@
-import { Lucia } from "lucia";
 export type { User, Session } from "lucia";
 export { verifyRequestOrigin, generateId } from "lucia";
 
+import { Lucia } from "lucia";
 import { DrizzleSQLiteAdapter } from "@lucia-auth/adapter-drizzle";
 import { db } from "@myrepo/db/src/db";
 import * as schema from "@myrepo/db/src/schema";
@@ -18,6 +18,12 @@ export const lucia = new Lucia(adapter, {
       // set to `true` when using HTTPS
       secure: process.env.NODE_ENV === "production",
     },
+  },
+  getUserAttributes(databaseUserAttributes) {
+    return databaseUserAttributes;
+  },
+  getSessionAttributes(databaseSessionAttributes) {
+    return databaseSessionAttributes;
   },
 });
 

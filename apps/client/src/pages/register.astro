@@ -4,5 +4,16 @@ import { RegisterForm } from "@/components/component/register-form.tsx";
 ---
 
 <Layout title="Register Here!">
-  <RegisterForm client:load />
+  <div class="flex min-h-screen items-center justify-center bg-gray-100">
+    <div class="min-w-[450px] max-w-lg rounded-lg bg-white p-8 shadow-md">
+      <h1 class="mb-6 text-center text-4xl font-bold">Sign Up</h1>
+      <RegisterForm client:load />
+      <div class="text-center">
+        <p class="text-sm">
+          Already have an account?{" "}
+          <a class="text-blue-600 hover:underline" href="/login"> Login </a>
+        </p>
+      </div>
+    </div>
+  </div>
 </Layout>

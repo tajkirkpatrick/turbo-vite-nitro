@@ -4,5 +4,18 @@ import { LoginForm } from "@/components/component/login-form.tsx";
 ---
 
 <Layout title="Welcome Back!">
-  <LoginForm client:load />
+  <div class="flex min-h-screen items-center justify-center bg-gray-100">
+    <div class="min-w-[450px] max-w-lg rounded-lg bg-white p-8 shadow-md">
+      <h1 class="mb-6 text-center text-4xl font-bold">Login</h1>
+      <LoginForm client:load />
+      <div class="text-center">
+        <p class="text-sm">
+          Don't have an account?{" "}
+          <a class="text-blue-600 hover:underline" href="/register">
+            Sign Up
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
 </Layout>
