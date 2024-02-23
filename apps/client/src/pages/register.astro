@@ -1,13 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Dashboard } from "@/components/component/dashboard.tsx";
 import { RegisterForm } from "@/components/component/register-form.tsx";
 ---
 
-<Layout title="Welcome to Astro.">
-  <main class="flex h-screen w-screen items-center justify-center">
-    <Dashboard title="Register">
-      <RegisterForm client:only="react" />
-    </Dashboard>
-  </main>
+<Layout title="Register Here!">
+  <RegisterForm client:load />
 </Layout>

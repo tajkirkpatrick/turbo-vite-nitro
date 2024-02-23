@@ -1,6 +1,7 @@
 {
   "name": "db",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "generate": "drizzle-kit generate:sqlite",
     "push": "drizzle-kit push:sqlite",
@@ -9,10 +10,11 @@
   "dependencies": {
     "@types/better-sqlite3": "^7.6.9",
     "better-sqlite3": "^9.4.1",
-    "drizzle-orm": "^0.29.3",
-    "typescript": "^5.3.3"
+    "drizzle-orm": "^0.29.3"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.20.14"
+    "drizzle-kit": "^0.20.14",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
   }
 }

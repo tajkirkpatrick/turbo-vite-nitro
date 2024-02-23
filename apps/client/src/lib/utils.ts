@@ -1,8 +1,9 @@
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
+import type { ClassValue } from "clsx";
+import { clsx } from "clsx";
 import { ofetch } from "ofetch";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
+import { twMerge } from "tailwind-merge";
 
 export const apiFetch = ofetch.create({
   // we want ofetch to send request to astro, who will proxy them on the dev server to localhost:3000

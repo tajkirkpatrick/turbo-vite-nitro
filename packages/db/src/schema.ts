@@ -7,8 +7,9 @@ export const userTable = sqliteTable("user", {
   email: text("email").unique().notNull(),
   password: text("password").notNull(),
   createdAt: integer("created_at", { mode: "timestamp" })
-    .notNull()
-    .$defaultFn(() => new Date()),
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp" }),
 });
 
 export const usersRelations = relations(userTable, ({ many }) => ({
@@ -23,6 +24,9 @@ export const sessionTable = sqliteTable("session", {
     .notNull()
     .references(() => userTable.id, { onDelete: "cascade" }),
   expiresAt: integer("expires_at").notNull(),
+  createdAt: integer("created_at", { mode: "timestamp" })
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
 });
 
 export const sessionsRelations = relations(sessionTable, ({ one }) => ({

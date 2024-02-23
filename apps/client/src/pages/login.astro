@@ -1,13 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Dashboard } from "@/components/component/dashboard.tsx";
 import { LoginForm } from "@/components/component/login-form.tsx";
 ---
 
-<Layout title="Welcome to Astro.">
-  <main class="flex h-screen w-screen items-center justify-center">
-    <Dashboard title="Register">
-      <LoginForm client:load />
-    </Dashboard>
-  </main>
+<Layout title="Welcome Back!">
+  <LoginForm client:load />
 </Layout>
