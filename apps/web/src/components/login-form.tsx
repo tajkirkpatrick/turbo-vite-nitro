@@ -1,4 +1,5 @@
-import { useForm, type FieldApi } from "@tanstack/react-form";
+import type { FieldApi } from "@tanstack/react-form";
+import { useForm } from "@tanstack/react-form";
 import { string, email, minLength } from "valibot";
 import { valibotValidator } from "@tanstack/valibot-form-adapter";
 /**
@@ -8,8 +9,9 @@ import { valibotValidator } from "@tanstack/valibot-form-adapter";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-import { LoginSchema } from "@/lib/schemas";
-import { useLoginAction as useLoginAction } from "@/lib/utils";
+// import { LoginSchema } from "@/lib/schemas";
+import * as v from "valibot";
+// import { useLoginAction as useLoginAction } from "@/lib/utils";
 
 function FieldInfo({ field }: { field: FieldApi<any, any, any, any> }) {
   return (
@@ -25,7 +27,7 @@ function FieldInfo({ field }: { field: FieldApi<any, any, any, any> }) {
 }
 
 export function LoginForm() {
-  const { trigger } = useLoginAction();
+  //   const { trigger } = useLoginAction();
 
   const form = useForm({
     defaultValues: {
@@ -33,18 +35,19 @@ export function LoginForm() {
       password: "",
     },
     onSubmit: async ({ value, formApi }) => {
-      const res = await trigger({ ...value }).catch((e) => console.error(e));
+      console.log(value);
+      //   const res = await trigger({ ...value }).catch((e) => console.error(e));
       formApi.setFieldValue("password", "");
-      console.log(res);
-      if (!res || !res.ok) {
-        return (window.location.href = "/login?error=login-failed");
-      } else {
-        // return (window.location.href = new URL(res.url).href);
-      }
+      //   console.log(res);
+      //   if (!res || !res.ok) {
+      //     return (window.location.href = "/login?error=login-failed");
+      //   } else {
+      // return (window.location.href = new URL(res.url).href);
+      //   }
     },
     validatorAdapter: valibotValidator,
     validators: {
-      onSubmit: LoginSchema,
+      onSubmit: v.object({ email: v.string([]), password: v.string([]) }),
     },
   });
 
