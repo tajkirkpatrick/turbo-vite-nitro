@@ -14,12 +14,13 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as LayoutImport } from './routes/_layout'
-import { Route as LayoutLoginImport } from './routes/_layout.login'
+import { Route as R404Import } from './routes/__404'
 
 // Create Virtual Routes
 
 const LayoutIndexLazyImport = createFileRoute('/_layout/')()
-const LayoutAboutLazyImport = createFileRoute('/_layout/about')()
+const LayoutRegisterLazyImport = createFileRoute('/_layout/register')()
+const LayoutLoginLazyImport = createFileRoute('/_layout/login')()
 
 // Create/Update Routes
 
@@ -28,35 +29,46 @@ const LayoutRoute = LayoutImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const R404Route = R404Import.update({
+  id: '/__404',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const LayoutIndexLazyRoute = LayoutIndexLazyImport.update({
   path: '/',
   getParentRoute: () => LayoutRoute,
 } as any).lazy(() => import('./routes/_layout.index.lazy').then((d) => d.Route))
 
-const LayoutAboutLazyRoute = LayoutAboutLazyImport.update({
-  path: '/about',
+const LayoutRegisterLazyRoute = LayoutRegisterLazyImport.update({
+  path: '/register',
   getParentRoute: () => LayoutRoute,
-} as any).lazy(() => import('./routes/_layout.about.lazy').then((d) => d.Route))
+} as any).lazy(() =>
+  import('./routes/_layout.register.lazy').then((d) => d.Route),
+)
 
-const LayoutLoginRoute = LayoutLoginImport.update({
+const LayoutLoginLazyRoute = LayoutLoginLazyImport.update({
   path: '/login',
   getParentRoute: () => LayoutRoute,
-} as any)
+} as any).lazy(() => import('./routes/_layout.login.lazy').then((d) => d.Route))
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/__404': {
+      preLoaderRoute: typeof R404Import
+      parentRoute: typeof rootRoute
+    }
     '/_layout': {
       preLoaderRoute: typeof LayoutImport
       parentRoute: typeof rootRoute
     }
     '/_layout/login': {
-      preLoaderRoute: typeof LayoutLoginImport
+      preLoaderRoute: typeof LayoutLoginLazyImport
       parentRoute: typeof LayoutImport
     }
-    '/_layout/about': {
-      preLoaderRoute: typeof LayoutAboutLazyImport
+    '/_layout/register': {
+      preLoaderRoute: typeof LayoutRegisterLazyImport
       parentRoute: typeof LayoutImport
     }
     '/_layout/': {
@@ -69,9 +81,10 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren([
+  R404Route,
   LayoutRoute.addChildren([
-    LayoutLoginRoute,
-    LayoutAboutLazyRoute,
+    LayoutLoginLazyRoute,
+    LayoutRegisterLazyRoute,
     LayoutIndexLazyRoute,
   ]),
 ])

@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { NotFoundPage } from "@/routes/__404";
 
 const TanStackRouterDevtools =
   process.env.NODE_ENV === "production"
@@ -10,7 +11,7 @@ const TanStackRouterDevtools =
           default: res.TanStackRouterDevtools,
           // For Embedded Mode
           // default: res.TanStackRouterDevtoolsPanel
-        }))
+        })),
       );
 
 export const Route = createRootRoute({
@@ -31,4 +32,5 @@ export const Route = createRootRoute({
       </Suspense>
     </>
   ),
+  notFoundComponent: NotFoundPage,
 });
