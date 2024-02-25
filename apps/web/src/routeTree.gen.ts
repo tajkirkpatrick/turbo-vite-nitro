@@ -15,6 +15,8 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as R404Import } from './routes/__404'
+import { Route as LayoutAuthImport } from './routes/_layout._auth'
+import { Route as LayoutAuthProtectedImport } from './routes/_layout._auth.protected'
 
 // Create Virtual Routes
 
@@ -51,6 +53,16 @@ const LayoutLoginLazyRoute = LayoutLoginLazyImport.update({
   getParentRoute: () => LayoutRoute,
 } as any).lazy(() => import('./routes/_layout.login.lazy').then((d) => d.Route))
 
+const LayoutAuthRoute = LayoutAuthImport.update({
+  id: '/_auth',
+  getParentRoute: () => LayoutRoute,
+} as any)
+
+const LayoutAuthProtectedRoute = LayoutAuthProtectedImport.update({
+  path: '/protected',
+  getParentRoute: () => LayoutAuthRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -62,6 +74,10 @@ declare module '@tanstack/react-router' {
     '/_layout': {
       preLoaderRoute: typeof LayoutImport
       parentRoute: typeof rootRoute
+    }
+    '/_layout/_auth': {
+      preLoaderRoute: typeof LayoutAuthImport
+      parentRoute: typeof LayoutImport
     }
     '/_layout/login': {
       preLoaderRoute: typeof LayoutLoginLazyImport
@@ -75,6 +91,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutIndexLazyImport
       parentRoute: typeof LayoutImport
     }
+    '/_layout/_auth/protected': {
+      preLoaderRoute: typeof LayoutAuthProtectedImport
+      parentRoute: typeof LayoutAuthImport
+    }
   }
 }
 
@@ -83,6 +103,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   R404Route,
   LayoutRoute.addChildren([
+    LayoutAuthRoute.addChildren([LayoutAuthProtectedRoute]),
     LayoutLoginLazyRoute,
     LayoutRegisterLazyRoute,
     LayoutIndexLazyRoute,
